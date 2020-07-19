@@ -7,9 +7,10 @@ use Yii;
 /**
  * This is the model class for table "rekap_tagihan".
  *
+ * @property int $id
  * @property int $nim
- * @property int $terbayar
- * @property int $sisa_tagihan
+ * @property string $terbayar
+ * @property string $sisa_tagihan
  * @property int $idstatus
  *
  * @property StaticMahasiswa $nim0
@@ -32,7 +33,8 @@ class RekapTagihan extends \yii\db\ActiveRecord
     {
         return [
             [['nim', 'terbayar', 'sisa_tagihan', 'idstatus'], 'required'],
-            [['nim', 'terbayar', 'sisa_tagihan', 'idstatus'], 'integer'],
+            [['nim', 'idstatus'], 'integer'],
+            [['terbayar', 'sisa_tagihan'], 'string', 'max' => 255],
             [['nim'], 'exist', 'skipOnError' => true, 'targetClass' => StaticMahasiswa::className(), 'targetAttribute' => ['nim' => 'id']],
             [['idstatus'], 'exist', 'skipOnError' => true, 'targetClass' => HelperStatus::className(), 'targetAttribute' => ['idstatus' => 'id']],
         ];
@@ -44,6 +46,7 @@ class RekapTagihan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'nim' => 'Nim',
             'terbayar' => 'Terbayar',
             'sisa_tagihan' => 'Sisa Tagihan',

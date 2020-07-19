@@ -14,9 +14,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nim')->textInput() ?>
 
-    <?= $form->field($model, 'terbayar')->textInput() ?>
+    <?= $form->field($model, 'terbayar')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'sisa_tagihan')->textInput() ?>
+    <?= $form->field($model, 'sisa_tagihan')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'idstatus')->textInput() ?>
 
