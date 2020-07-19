@@ -17,7 +17,8 @@ class RekapTagihanSearch extends RekapTagihan
     public function rules()
     {
         return [
-            [['id', 'nim', 'terbayar', 'sisa_tagihan', 'idstatus'], 'integer'],
+            [['id', 'nim', 'idstatus'], 'integer'],
+            [['terbayar', 'sisa_tagihan'], 'safe'],
         ];
     }
 
@@ -59,10 +60,11 @@ class RekapTagihanSearch extends RekapTagihan
         $query->andFilterWhere([
             'id' => $this->id,
             'nim' => $this->nim,
-            'terbayar' => $this->terbayar,
-            'sisa_tagihan' => $this->sisa_tagihan,
             'idstatus' => $this->idstatus,
         ]);
+
+        $query->andFilterWhere(['like', 'terbayar', $this->terbayar])
+            ->andFilterWhere(['like', 'sisa_tagihan', $this->sisa_tagihan]);
 
         return $dataProvider;
     }
