@@ -10,54 +10,32 @@
             </div>
             <div class=" row">
                         <div class="col-md-2">
-                            <div class="thumbnail" style="text-align:center; padding-top:10px; color: #3c8dbc;">
-                                <i class="fa fa-clock-o fa-4x"></i>
-                                <div class="caption" style="padding:8px 0 0;">
-                                    <h4 style="font-size:16px;">Daftar Kehadiran</h4>
-                                </div>
-                            </div> 
-                        </div>
-                        <div class="col-md-2">
-                            <div class="thumbnail" style="text-align:center; padding-top:10px; color: #3c8dbc;">
-                                <i class="fa fa-money fa-4x"></i>
-                                <div class="caption" style="padding:8px 0 0;">
-                                    <h4 style="font-size:16px;">Tagihan Biaya Kuliah</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="thumbnail" style="text-align:center; padding-top:10px; color: #3c8dbc;">
-                                <i class="fa fa-graduation-cap fa-4x"></i>
-                                <div class="caption" style="padding:8px 0 0;">
-                                    <h4 style="font-size:16px;">Kartu Rencana Studi</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="thumbnail" style="text-align:center; padding-top:10px; color: #3c8dbc;">
-                                <i class="fa  fa-clone fa-4x"></i>
-                                <div class="caption" style="padding:8px 0 0;">
-                                    <h4 style="font-size:16px;">Kartu Hasil Studi</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                        <a href="bimbingan-akademik/index">
+                        <a href="rekap-tagihan">
                             <div class="thumbnail" style="text-align:center; padding-top:10px; color: #3c8dbc;">
                                 <i class="fa fa-users fa-4x"></i>
                                 <div class="caption" style="padding:8px 0 0;">
-                                    <h4 style="font-size:16px;">Bimbingan Akademik</h4>
+                                    <h4 style="font-size:16px;">Bimbingan Akademik Tagihan</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                        <a href="rekap-presensi">
+                            <div class="thumbnail" style="text-align:center; padding-top:10px; color: #3c8dbc;">
+                                <i class="fa fa-users fa-4x"></i>
+                                <div class="caption" style="padding:8px 0 0;">
+                                    <h4 style="font-size:16px;">Bimbingan Akademik Presensi</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">   
+                        <a href="rekap-khs">
                             <div class="thumbnail" style="text-align:center; padding-top:10px; color: #3c8dbc;">
-                                <i class="fa fa-book fa-4x"></i>
-                                <div class=" caption" style="padding:8px 0 0;">
-                                <h4 style="font-size:16px;">Tugas Akhir</h4>
-                                </div> 
+                                <i class="fa fa-users fa-4x"></i>
+                                <div class="caption" style="padding:8px 0 0;">
+                                    <h4 style="font-size:16px;">Bimbingan Akademik KHS</h4>
                                 </div>
-                            </a>
+                            </div>
+                        </div>
                         </div>
             </div>
             <!-- /.box -->
