@@ -27,27 +27,27 @@
 </head>
 <body>	
     <div class="page">	
-        <h1>Rekapitulasi Tagihan</h1>
+        <h1>Rekap KHS</h1>
         <table border="0">
         <tr>
                 <th>No</th>
                 <th>NIM</th>
                 <th>Nama</th>
-                <th>Terbayar</th>
-                <th>Sisa Tagihan</th>
-                <th>Status</th>
+                <th>IPS</th>
+                <th>IPK</th>
+                
         </tr>
         <?php
         $no = 1;
-        foreach($dataProvider->getModels() as $tagihan){ 
+        foreach($dataProvider->getModels() as $khs){ 
         ?>
         <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $tagihan->id ?></td>
-                <td><?= $tagihan->nim0->name ?></td>
-                <td><?= $tagihan->terbayar ?></td>
-                <td><?= $tagihan->sisa_tagihan ?></td>
-                <td><?= $tagihan->idstatus0->name ?></td>
+                <td><?= $khs->nim0->id ?></td>
+                <td><?= $khs->nim0->name ?></td>
+                <td><?= $no++ ?></td>
+                <td><?= $khs->ipk ?></td>
+                <td><?= $khs->ips ?></td>
         </tr>
         <?php
         }

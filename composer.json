@@ -26,7 +26,8 @@
         "miloschuman/yii2-highcharts-widget": "^7.1",
         "kartik-v/yii2-mpdf": "dev-master",
         "wbraganca/yii2-dynamicform": "*",
-        "hscstudio/yii2-export": "*"
+        "hscstudio/yii2-export": "*",
+        "mpdf/mpdf": "^8.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

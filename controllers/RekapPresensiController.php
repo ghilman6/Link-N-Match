@@ -124,4 +124,35 @@ class RekapPresensiController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+     //Tambah excel
+     public function actionExportExcel2()
+     {
+         $searchModel = new RekapPresensiSearch();
+         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+         
+         // Initalize the TBS instance
+         $OpenTBS = new \hscstudio\export\OpenTBS; // new instance of TBS
+         // Change with Your template kaka
+         $template = Yii::getAlias('@hscstudio/export').'/templates/opentbs/rekapPresensi.xlsx';
+         $OpenTBS->LoadTemplate($template); // Also merge some [onload] automatic fields (depends of the type of document).
+         //$OpenTBS->VarRef['modelName']= "Mahasiswa";				
+         $data = [];
+         $no=1;
+         foreach($dataProvider->getModels() as $presensi){
+             $data[] = [
+                 'no'=>$no++,
+                 'nim'=> $presensi->nim,
+                 'nama'=>$presensi->nim0->name,
+                 'kehadiran'=>$presensi->kehadiran,
+                 'matkul'=>$presensi->idmatkul0->name,
+                 'dosen'=>$presensi->iddosen0->name
+             ];
+         }
+         
+         $OpenTBS->MergeBlock('data', $data);
+         // Output the result as a file on the server. You can change output file
+         $OpenTBS->Show(OPENTBS_DOWNLOAD, 'rekap_presensi.xlsx'); // Also merges all [onshow] automatic fields.			
+         exit;
+     }
 }
