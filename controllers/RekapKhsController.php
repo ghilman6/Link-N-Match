@@ -124,4 +124,48 @@ class RekapKhsController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    //Tambahan pdf
+    public function actionExportPdf()
+    {
+        $searchModel = new RekapKhsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $html = $this->renderPartial('rekap_khs',['dataProvider'=>$dataProvider]);
+        $mpdf=new \mPDF('c','A4','','' , 0 , 0 , 0 , 0 , 0 , 0);  
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->list_indent_first_level = 0;  // 1 or 0 - whether to indent the first level of a list
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;
+    }
+
+    //Tambah excel
+    public function actionExportExcel2()
+    {
+        $searchModel = new RekapKhsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        // Initalize the TBS instance
+        $OpenTBS = new \hscstudio\export\OpenTBS; // new instance of TBS
+        // Change with Your template kaka
+		$template = Yii::getAlias('@hscstudio/export').'/templates/opentbs/rekapKhs.xlsx';
+        $OpenTBS->LoadTemplate($template); // Also merge some [onload] automatic fields (depends of the type of document).
+        //$OpenTBS->VarRef['modelName']= "Mahasiswa";				
+        $data = [];
+        $no=1;
+        foreach($dataProvider->getModels() as $khs){
+            $data[] = [
+                'no'=>$no++,
+                'nim'=>$khs->nim,
+                'nama'=>$khs->nim0->name,
+                'ips'=>$khs->ips,
+                'ipk'=>$khs->ipk,
+            ];
+        }
+        
+        $OpenTBS->MergeBlock('data', $data);
+        // Output the result as a file on the server. You can change output file
+        $OpenTBS->Show(OPENTBS_DOWNLOAD, 'rekap_khs.xlsx'); // Also merges all [onshow] automatic fields.			
+        exit;
+    } 
 }

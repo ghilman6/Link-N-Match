@@ -138,4 +138,35 @@ class RekapTagihanController extends Controller
         $mpdf->Output();
         exit;
     }
+
+    //Tambah excel
+    public function actionExportExcel2()
+    {
+        $searchModel = new RekapTagihanSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        // Initalize the TBS instance
+        $OpenTBS = new \hscstudio\export\OpenTBS; // new instance of TBS
+        // Change with Your template kaka
+		$template = Yii::getAlias('@hscstudio/export').'/templates/opentbs/rekapTagihan.xlsx';
+        $OpenTBS->LoadTemplate($template); // Also merge some [onload] automatic fields (depends of the type of document).
+        //$OpenTBS->VarRef['modelName']= "Mahasiswa";				
+        $data = [];
+        $no=1;
+        foreach($dataProvider->getModels() as $tagihan){
+            $data[] = [
+                'no'=>$no++,
+                'nim'=> $tagihan->nim,
+                'nama'=>$tagihan->nim0->name,
+                'terbayar'=>$tagihan->terbayar,
+                'sisa_tagihan'=>$tagihan->sisa_tagihan,
+                'status'=>$tagihan->idstatus0->name
+            ];
+        }
+        
+        $OpenTBS->MergeBlock('data', $data);
+        // Output the result as a file on the server. You can change output file
+        $OpenTBS->Show(OPENTBS_DOWNLOAD, 'rekap_tagihan.xlsx'); // Also merges all [onshow] automatic fields.			
+        exit;
+    }
 }
